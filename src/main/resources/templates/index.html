@@ -14,7 +14,7 @@
         <script src="http://www.ekino.com/wp-content/themes/ekino/vendor/html5shiv/dist/html5shiv.min.js"></script>
         <script src="http://www.ekino.com/wp-content/themes/ekino/vendor/respond/dest/respond.min.js"></script>
         <![endif]-->
-		<style type="text/css">
+		<style type="text/css" th:inline="text">
 			html,body,#main,section,.bl-alaune,.container {
 			    height:100%;
 			}
@@ -22,7 +22,7 @@
 				margin-bottom: -59px;
 			}
 			.bl-alaune {
-				background: #00a5ba bottom right no-repeat;
+				background: [[${backgroundColor}]] bottom right no-repeat;
 			}
 			.btn-default {
 				color: white;

@@ -7,12 +7,14 @@ import javax.servlet.ServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ekino.handson.springboot.urlshortener.config.Configuration;
 import com.ekino.handson.springboot.urlshortener.model.ShortLink;
 import com.ekino.handson.springboot.urlshortener.ws.LinkWebService;
 
@@ -26,6 +28,14 @@ public class HomeController {
 
     @Autowired
     LinkWebService linkService;
+
+    @Autowired
+    private Configuration configuration;
+
+    @ModelAttribute
+    public void global(ModelMap map) {
+        map.addAttribute("backgroundColor", configuration.getBackgroundColor());
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     String index() {
