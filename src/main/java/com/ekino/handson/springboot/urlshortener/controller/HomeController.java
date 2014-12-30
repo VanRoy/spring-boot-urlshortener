@@ -1,10 +1,13 @@
 package com.ekino.handson.springboot.urlshortener.controller;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.servlet.ServletRequest;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpHead;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,6 +35,9 @@ public class HomeController {
     @Autowired
     private Configuration configuration;
 
+    @Autowired
+    private HttpClient httpClient;
+
     @ModelAttribute
     public void global(ModelMap map) {
         map.addAttribute("backgroundColor", configuration.getBackgroundColor());
@@ -43,7 +49,12 @@ public class HomeController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    ModelAndView generate(@ModelAttribute("originalUrl") String originalUrl, ServletRequest request) {
+    ModelAndView generate(@ModelAttribute("originalUrl") String originalUrl, ServletRequest request) throws IOException {
+
+        // Add Original URL validation
+        if(httpClient.execute(new HttpHead(originalUrl)).getStatusLine().getStatusCode() != 200) {
+            throw new IllegalArgumentException();
+        }
 
         ShortLink link = linkService.createLink(originalUrl);
 
