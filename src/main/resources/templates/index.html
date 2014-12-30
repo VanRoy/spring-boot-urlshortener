@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="fr" class="no-js" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+    <head>
+        <link rel="shortcut icon" href="http://www.ekino.com/favicon.ico"/>
+        <meta charset="utf-8" />
+        <title>ekino - URL Shortener</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes" />
+
+        <link rel="stylesheet" href="http://www.ekino.com/wp-content/themes/ekino/assets/css/styles.min.css" />
+        <!--[if lt IE 9]>
+        <script src="http://www.ekino.com/wp-content/themes/ekino/vendor/html5shiv/dist/html5shiv.min.js"></script>
+        <script src="http://www.ekino.com/wp-content/themes/ekino/vendor/respond/dest/respond.min.js"></script>
+        <![endif]-->
+		<style type="text/css" th:inline="text">
+			html,body,#main,section,.bl-alaune,.container {
+			    height:100%;
+			}
+			#main {
+				margin-bottom: -59px;
+			}
+			.bl-alaune {
+				background: [[${backgroundColor}]] bottom right no-repeat;
+			}
+			.btn-default {
+				color: white;
+				background-color: black;
+				border-color: white;
+			}
+			a, a:hover, a:focus {
+				color: white;
+			}
+		</style>
+    </head>
+    <body class="home blog">
+
+		<!-- Start Header -->
+		<header>
+		    <div class="hNav menu affix">
+		        <div class="container">
+		            <div class="navbar-header">
+
+		                <button class="navbar-toggle" data-target=".bs-navbar-collapse" data-toggle="collapse" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+		                <h1 class="logo pull-left"><a href="/" title="ekino"><img src="http://www.ekino.com/wp-content/themes/ekino/images/logo_3.png" alt="ekino" width="83" height="23" /></a>
+		                </h1>
+		            </div>
+		            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+		                <ul class="nav navbar-nav navbar-right ekino-nav">
+                            <li><a href="#contact" class="scrollTo" title="Contact">contact</a></li>
+                        </ul>
+                    </nav>
+		        </div>
+		    </div>
+		</header>
+		<!-- End Header -->
+
+		<div id="main">
+		<!-- Start A la une -->
+		<section id="hash_bl-alaune">
+            <div class="bl-alaune">
+                <div class="container hBody-content">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12">
+                            <div class="hBodyInner">
+                                <h1 id="logo" class="hidden-xs"><img src="http://www.ekino.com/wp-content/themes/ekino/assets/img/logo.png" alt="ekino"/></h1>
+
+                                <p class="sub-description">Welcome to Ekino URL Shortener.</p>
+
+                                <p class="h-text">Paste the website address above to shorten it.</p>
+
+                            </div>
+                        </div>
+                    </div>
+					<div class="row">
+         				<div class="col-md-12 col-sm-12">
+							<form th:action="@{/}" action="#" method="post">
+
+								<div class="input-group input-group-lg">
+									<input type="text" name="originalUrl" class="form-control" placeholder="Enter your long URL HERE" autofocus="true"/>
+									<span class="input-group-btn">
+			        					<button class="btn btn-default" type="submit">Shorten URL</button>
+			      					</span>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="row" style="margin-top:30px">
+         				<div class="col-md-12 col-sm-12 text-center">
+							<div th:hidden="${shortLink==null}">
+								<span style="font-family: 'graphikbold';">
+									<h1>Your short URL : <a th:href="${shortLink}" th:text="${shortLink}">http://test.com</a></h1>
+								</span>
+							</div>
+						</div>
+					</div>
+                </div>
+            </div>
+		</section>
+		<!-- End A la une -->
+
+		</div>
+		<!-- End Main -->
+
+		<!-- Start Footer -->
+		<footer id="hash_footer">
+			<div class="row">
+				<div class="col-md-12 col-sm-4 col-xs-6 cube-item">
+					<h3 class="title">ekino.</h3>
+				</div>
+			</div>
+		</footer>
+		<!-- End Footer -->
+
+    </body>
+</html>
