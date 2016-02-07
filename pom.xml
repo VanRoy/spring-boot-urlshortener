@@ -89,4 +89,50 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>deploy-aws</id>
+			<properties>
+				<maven.install.skip>true</maven.install.skip>
+				<maven.deploy.skip>true</maven.deploy.skip>
+				<beanstalk.applicationName>urlshortener</beanstalk.applicationName>
+				<beanstalk.environmentName>urlshortener</beanstalk.environmentName>
+				<beanstalk.cnamePrefix>urlshortener</beanstalk.cnamePrefix>
+				<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+				<beanstalk.s3Bucket>elasticbeanstalk-us-east-1-672925572721</beanstalk.s3Bucket>
+				<beanstalk.s3Key>${project.artifactId}/${project.build.finalName}-${project.version}-${maven.build.timestamp}.jar</beanstalk.s3Key>
+				<beanstalk.multipartUpload>false</beanstalk.multipartUpload>
+				<beanstalk.useLatestVersion>false</beanstalk.useLatestVersion>
+			</properties>
+			<build>
+				<defaultGoal>deploy</defaultGoal>
+				<finalName>urlshortener</finalName>
+				<plugins>
+					<plugin>
+						<groupId>br.com.ingenieux</groupId>
+						<artifactId>beanstalk-maven-plugin</artifactId>
+						<version>1.4.2</version>
+						<executions>
+							<execution>
+								<id>default-deploy</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>upload-source-bundle</goal>
+									<goal>create-application-version</goal>
+									<goal>update-environment</goal>
+								</goals>
+								<configuration>
+									<versionLabel>${project.version}-${maven.build.timestamp}</versionLabel>
+                                    <artifactFile>${project.build.directory}/${project.build.finalName}-${project.version}.jar</artifactFile>
+                                    <skipExisting>false</skipExisting>
+									<environmentRef>urlshortener.elasticbeanstalk.com</environmentRef>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 </project>
