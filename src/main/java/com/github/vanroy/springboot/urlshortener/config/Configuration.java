@@ -1,11 +1,10 @@
-package com.ekino.handson.springboot.urlshortener.config;
+package com.github.vanroy.springboot.urlshortener.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * @author: Julien Roy
- * @version: $Id$
+ * @author Julien Roy
  */
 @Component
 @ConfigurationProperties(prefix = "app")
