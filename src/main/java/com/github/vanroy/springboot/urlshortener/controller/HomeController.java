@@ -1,10 +1,13 @@
-package com.ekino.handson.springboot.urlshortener.controller;
+package com.github.vanroy.springboot.urlshortener.controller;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.servlet.ServletRequest;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpHead;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,13 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ekino.handson.springboot.urlshortener.config.Configuration;
-import com.ekino.handson.springboot.urlshortener.model.ShortLink;
-import com.ekino.handson.springboot.urlshortener.ws.LinkWebService;
+import com.github.vanroy.springboot.urlshortener.config.Configuration;
+import com.github.vanroy.springboot.urlshortener.model.ShortLink;
+import com.github.vanroy.springboot.urlshortener.ws.LinkWebService;
 
 /**
- * @author: Julien Roy
- * @version: $Id$
+ * @author Julien Roy
  */
 @Controller
 @RequestMapping("/")
@@ -31,6 +33,9 @@ public class HomeController {
 
     @Autowired
     private Configuration configuration;
+
+    @Autowired
+    private HttpClient httpClient;
 
     @ModelAttribute
     public void global(ModelMap map) {
@@ -43,7 +48,12 @@ public class HomeController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    ModelAndView generate(@ModelAttribute("originalUrl") String originalUrl, ServletRequest request) {
+    ModelAndView generate(@ModelAttribute("originalUrl") String originalUrl, ServletRequest request) throws IOException {
+
+        // Add Original URL validation
+        if(httpClient.execute(new HttpHead(originalUrl)).getStatusLine().getStatusCode() != 200) {
+            throw new IllegalArgumentException();
+        }
 
         ShortLink link = linkService.createLink(originalUrl);
 

@@ -1,4 +1,4 @@
-package com.ekino.handson.springboot.urlshortener.ws;
+package com.github.vanroy.springboot.urlshortener.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ekino.handson.springboot.urlshortener.model.ShortLink;
-import com.ekino.handson.springboot.urlshortener.repository.LinkRepository;
+import com.github.vanroy.springboot.urlshortener.model.ShortLink;
+import com.github.vanroy.springboot.urlshortener.repository.LinkRepository;
 
 /**
- * @author: Julien Roy
- * @version: $Id$
+ * @author Julien Roy
  */
 @RestController
 public class LinkWebService {
