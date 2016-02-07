@@ -1,12 +1,10 @@
-package com.ekino.handson.springboot.urlshortener.repository;
+package com.github.vanroy.springboot.urlshortener.repository;
 
 import org.springframework.data.repository.CrudRepository;
-
-import com.ekino.handson.springboot.urlshortener.model.ShortLink;
+import com.github.vanroy.springboot.urlshortener.model.ShortLink;
 
 /**
- * @author: Julien Roy
- * @version: $Id$
+ * @author Julien Roy
  */
 public interface LinkRepository extends CrudRepository<ShortLink, Long> {
 
