@@ -1,4 +1,4 @@
-package com.ekino.handson.springboot.urlshortener;
+package com.github.vanroy.springboot.urlshortener;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
