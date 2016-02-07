@@ -1,9 +1,9 @@
-package com.ekino.handson.springboot.starters.httpclient;
+package com.github.vanroy.springboot.starters.httpclient;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Created by julien on 30/12/14.
+ * @author Julien Roy
  */
 @ConfigurationProperties(prefix = "spring.httpclient")
 public class HttpClientProperties {

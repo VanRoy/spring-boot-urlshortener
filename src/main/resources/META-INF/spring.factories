@@ -1,2 +1,2 @@
 # Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.ekino.handson.springboot.starters.httpclient.HttpClientAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.github.vanroy.springboot.starters.httpclient.HttpClientAutoConfiguration

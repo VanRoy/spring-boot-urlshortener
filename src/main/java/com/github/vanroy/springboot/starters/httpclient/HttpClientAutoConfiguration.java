@@ -1,4 +1,4 @@
-package com.ekino.handson.springboot.starters.httpclient;
+package com.github.vanroy.springboot.starters.httpclient;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by julien on 30/12/14.
+ * @author Julien Roy
  */
 @Configuration
 @ConditionalOnMissingBean(HttpClient.class)
