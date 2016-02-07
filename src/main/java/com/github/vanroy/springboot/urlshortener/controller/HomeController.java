@@ -1,4 +1,4 @@
-package com.ekino.handson.springboot.urlshortener.controller;
+package com.github.vanroy.springboot.urlshortener.controller;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ekino.handson.springboot.urlshortener.config.Configuration;
-import com.ekino.handson.springboot.urlshortener.model.ShortLink;
-import com.ekino.handson.springboot.urlshortener.ws.LinkWebService;
+import com.github.vanroy.springboot.urlshortener.config.Configuration;
+import com.github.vanroy.springboot.urlshortener.model.ShortLink;
+import com.github.vanroy.springboot.urlshortener.ws.LinkWebService;
 
 /**
- * @author: Julien Roy
- * @version: $Id$
+ * @author Julien Roy
  */
 @Controller
 @RequestMapping("/")
