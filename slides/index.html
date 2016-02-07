@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Spring Boot - Julien Roy</title>
+
+		<meta name="description" content="Spring Boot, Améliorer votre productivité en 1 heure">
+		<meta name="author" content="Julien Roy">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/ekino.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+        <div class="top-banner" style="display:none;"><div class="top-banner-title"><h1>Spring Boot</h1></div><div class="top-banner-inner"></div></div>
+
+        <div class="right-banner">
+            <div class="right-banner-top">
+				<div>Julien Roy</div>
+				<div>Architecte Java</div>
+				<div>@vanr0y</div>
+				<div>roy@ekino.com</div>
+			</div>
+            <img class="right-banner-bottom" src="./css/theme/img/logo-ekino-white.png" width="120px"/>
+        </div>
+
+		<div class="reveal">
+            
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Spring Boot</h1>
+					<h3>Améliorer votre productivité</h3>
+					<h3>en 1 heure</h3>
+					<h4>&nbsp;</h4>
+					<h4>Julien Roy / @vanr0y</h4>
+				</section>
+
+				<section>
+					<h2>Agenda</h2>
+					<ul>
+						<li>Présentation</li>
+						<li>Prise en main</li>
+						<li>Comment ça marche ?</li>
+						<li>Développement extension</li>
+						<li>Déploiement</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Présentation</h2>
+                    <ul>
+                        <li>Framework crée par Pivotal</li>
+                        <li>Première GA en Avril 2014</li>
+                        <li>18 mois de développement</li>
+                    </ul>
+				</section>
+
+				<section>
+					<h2>Concept</h2>
+                    <ul>
+                        <li>Simplifier la création d'application Spring</li>
+                        <li>Améliorer la productivité</li>
+                        <li>Reduire la configuration</li>
+                        <li>Simplifier le déploiement</li>
+                        <li>Propsoser l'opinon Spring</li>
+                    </ul>
+				</section>
+
+				<section>
+					<h2>Fonctionnalités</h2>
+                    <ul>
+                        <li>Packaging en JAR ou WAR</li>
+                        <li>Des pom.xml "starters" permettant d'activer facilement des modules (db, mail, jpa, ...)</li>
+                        <li>Mécanisme d'autoconfiguration</li>
+                        <li>Gestion des profiles et des properties</li>
+                        <li>Outillage pour la production (metriques et monitoring)</li>
+                    </ul>
+				</section>
+
+				<section>
+					<h2>Modules</h2>
+                    <ul>
+                        <li>logging (slf4j, logback, log4j2)</li>
+                        <li>data (jpa, es, mongo, solr, gemfire, redis)</li>
+                        <li>messaging (amqp, hornetq)</li>
+                        <li>templating (freemarker, thymeleaf, velocity)</li>
+                        <li>container (jetty, tomcat, undertow)</li>
+                        <li>web (spring-mvc, websocket, jersey, ws)</li>
+                        <li>mail</li>
+                        <li>...</li>
+                    </ul>
+				</section>
+
+				<section>
+					<h2>Démarrage</h2>
+                    <ul>
+                        <li>CLI
+	                        <ul>
+	                        	<li>Ligne de commande, prototypage en groovy</li>
+	                        </ul>
+                        </li>
+                        <li>Maven, Gradle</li>
+	                        <ul>
+	                        	<li>POM parent , Plugin</li>
+							</ul>
+                        <li>http://start.spring.io
+	                        <ul>
+	                        	<li>Initialise un projet Spring Boot</li>
+	                        	<li>Choix des modules, de l'outil de build, version</li>
+							</ul>
+                        </li>
+                    </ul>
+				</section>
+
+				<section>
+					<h1>Démo</h1>
+				</section>
+
+				<section>
+					<h2>Comment ça marche ?</h2>
+                    <ul>
+                        <li>Heritage de POMs</li>
+                        <li>Factories Spring</li>
+                        <li>Annotations</li>
+                    </ul>
+				</section>
+
+				<section>
+					<h2>Gestion des POMs</h2>
+                    <ul>
+                        <li>Projet herite de "spring-boot-parent"</li>
+                        <li>"spring-boot-dependencies" spécifie versions JARs</li>
+                        <li>"spring-boot-starter-XXX" ajoute les dépendances</li>
+                    </ul>
+				</section>
+
+				<section>
+					<h2>Spring Factories</h2>
+                    <ul>
+                        <li>Spring lit les fichiers META-INF/spring.factories</li>
+                        <li>Instanciation une classe d'autoconfiguration</li>
+                    </ul>
+				</section>
+
+				<section>
+					<h2>Annotations</h2>
+                    <ul>
+                        <li>@EnableAutoconfiguration(exclude=???)</li>
+                        <li>@Conditionnal</li>
+						<li>@EnableWebMvc, @EnableTransactionManagement</li>
+                    </ul>
+				</section>
+
+				<section>
+					<h1>Démo</h1>
+				</section>
+
+				<section>
+					<h2>Déploiement Cloud</h2>
+					<ul>
+						<li>Pivotal Web Services ( CloudFoundry )</li>
+						<li>AWS Beanstalk, ECS, Lambda</li>
+						<li>Heroku</li>
+						<li>Openshift</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions</h1>
+				</section>
+
+				<section>
+					<h2>Références</h2>
+					<br/>
+					<span>Documentation : <a href="http://projects.spring.io/spring-boot">http://projects.spring.io/spring-boot</a></span>
+					<span>Github : <a href="https://github.com/spring-projects/spring-boot">https://github.com/spring-projects/spring-boot</a></span>
+					<span>Intro : <a href="http://dsyer.com/presos/decks/spring-boot-intro.html">http://dsyer.com/presos/decks/spring-boot-intro.html</a></span>
+					<span>Initializr : <a href="http://start.spring.io">http://start.spring.io</a></span>
+ 				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+            
+            var topBannerFn = function( event ) {
+                document.querySelector( '.top-banner' ).style.display = Reveal.isFirstSlide() ? 'none' : '';
+            };
+            
+            Reveal.addEventListener( 'ready', topBannerFn);
+            Reveal.addEventListener( 'slidechanged', topBannerFn);
+		</script>
+
+	</body>
+</html>
