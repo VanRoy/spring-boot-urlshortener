@@ -28,5 +28,5 @@ Cette démo necessite un JDK 8 ainsi que Maven > 3.0.
 
 ### Lancement de l'application
 ```
-# mvn spring-boot:run
+# ./mvnw spring-boot:run
 ```
