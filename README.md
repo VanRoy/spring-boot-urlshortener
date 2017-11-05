@@ -4,6 +4,9 @@ Ce projet à pour but de presenter Spring Boot.
 
 Il contient une presentation de quelques slides ainsi qu'une application de demonstration.
 
+## Slides
+
+Slides de présentation : [http://vanroy.github.io/spring-boot-urlshortener](http://vanroy.github.io/spring-boot-urlshortener)
 
 ## Instructions
 
