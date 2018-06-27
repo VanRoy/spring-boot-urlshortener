@@ -1,13 +1,9 @@
 package com.github.vanroy.springboot.urlshortener.ws;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.vanroy.springboot.urlshortener.model.ShortLink;
 import com.github.vanroy.springboot.urlshortener.repository.LinkRepository;
@@ -16,12 +12,13 @@ import com.github.vanroy.springboot.urlshortener.repository.LinkRepository;
  * @author Julien Roy
  */
 @RestController
+@RequestMapping("/link")
+@RequiredArgsConstructor
 public class LinkWebService {
 
-    @Autowired
-    private LinkRepository repository;
+    final LinkRepository repository;
 
-    @RequestMapping(value = "/link", method = RequestMethod.POST)
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ShortLink createLink(@RequestBody String originalUrl) {
         ShortLink exist = repository.findOneByOriginalUrl(originalUrl);
@@ -31,17 +28,17 @@ public class LinkWebService {
         return repository.save(new ShortLink(originalUrl));
     }
 
-    @RequestMapping(value = "/link/all", method = RequestMethod.GET)
+    @GetMapping
     public Iterable<ShortLink> allLinks() {
         return repository.findAll();
     }
 
-    @RequestMapping(value = "/link/{shortUri}", method = RequestMethod.GET)
+    @GetMapping("{shortUri}")
     public ShortLink getLink(@PathVariable String shortUri) {
         return repository.findOneByShortUri(shortUri);
     }
 
-    @RequestMapping(value = "/link/{shortUri}", method = RequestMethod.DELETE)
+    @DeleteMapping("{shortUri}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteLink(@PathVariable String shortUri) {
         repository.deleteByShortUri(shortUri);

@@ -6,18 +6,16 @@ import java.net.URL;
 
 import javax.servlet.ServletRequest;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpHead;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.vanroy.springboot.urlshortener.config.Configuration;
+import com.github.vanroy.springboot.urlshortener.config.UrlShortenerProperties;
 import com.github.vanroy.springboot.urlshortener.model.ShortLink;
 import com.github.vanroy.springboot.urlshortener.ws.LinkWebService;
 
@@ -26,28 +24,24 @@ import com.github.vanroy.springboot.urlshortener.ws.LinkWebService;
  */
 @Controller
 @RequestMapping("/")
+@RequiredArgsConstructor
 public class HomeController {
 
-    @Autowired
-    LinkWebService linkService;
-
-    @Autowired
-    private Configuration configuration;
-
-    @Autowired
-    private HttpClient httpClient;
+    final LinkWebService linkService;
+    final UrlShortenerProperties properties;
+    final HttpClient httpClient;
 
     @ModelAttribute
     public void global(ModelMap map) {
-        map.addAttribute("backgroundColor", configuration.getBackgroundColor());
+        map.addAttribute("backgroundColor", properties.getBackgroundColor());
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     String index() {
         return "index";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     ModelAndView generate(@ModelAttribute("originalUrl") String originalUrl, ServletRequest request) throws IOException {
 
         // Add Original URL validation
@@ -60,7 +54,7 @@ public class HomeController {
         return new ModelAndView("index", "shortLink", relocateUrl(link.getShortUri(), request));
     }
 
-    @RequestMapping(value="{shortUri}",method = RequestMethod.GET)
+    @GetMapping("{shortUri}")
     String shortUri(@PathVariable String shortUri) {
         return "redirect:"+linkService.getLink(shortUri).getOriginalUrl();
     }

@@ -1,14 +1,14 @@
 package com.github.vanroy.springboot.urlshortener.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Julien Roy
  */
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "app")
-public class Configuration {
+public class UrlShortenerProperties {
 
     private String backgroundColor = "#00a5ba";
 
